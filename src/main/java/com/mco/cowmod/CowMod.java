@@ -1,12 +1,17 @@
 package com.mco.cowmod;
 
 import com.mco.cowmod.capabilities.Dna;
+import com.mco.cowmod.capabilities.DnaProvider;
 import com.mco.cowmod.capabilities.DnaStorage;
 import com.mco.cowmod.capabilities.IDna;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -25,6 +30,7 @@ import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("cowmod")
+@Mod.EventBusSubscriber(modid = CowMod.MODID)
 public class CowMod
 {
     // Directly reference a log4j logger.
@@ -73,6 +79,16 @@ public class CowMod
                 map(m->m.getMessageSupplier().get()).
                 collect(Collectors.toList()));
     }
+
+    @SubscribeEvent
+    public static void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event)
+    {
+        if(event.getObject() instanceof CowEntity)
+        {
+            event.addCapability(new ResourceLocation(CowMod.MODID, "dna"), new DnaProvider());
+        }
+    }
+
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {

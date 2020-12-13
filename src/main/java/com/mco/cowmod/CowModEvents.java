@@ -12,17 +12,10 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = CowMod.MODID)
 public class CowModEvents
 {
-	@SubscribeEvent
-	public void attachCapabilitiesEntity(final AttachCapabilitiesEvent<Entity> event)
-	{
-		if(event.getObject() instanceof CowEntity)
-		{
-			event.addCapability(new ResourceLocation(CowMod.MODID, "dna"), new DnaProvider());
-		}
-	}
+
 
 	@SubscribeEvent
-	public void breedEvent(final BabyEntitySpawnEvent event)
+	public static void breedEvent(final BabyEntitySpawnEvent event)
 	{
 		if(event.getParentA() instanceof CowEntity && event.getParentB() instanceof CowEntity && event.getChild() instanceof CowEntity)
 		{
