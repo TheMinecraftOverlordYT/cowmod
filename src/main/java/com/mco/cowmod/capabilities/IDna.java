@@ -1,29 +1,49 @@
 package com.mco.cowmod.capabilities;
 
+import java.util.UUID;
+
 public interface IDna
 {
 	/**
 	 * Returns the cow's unique id
 	 * @return the cow's unique identifier
 	 */
-	String getIdentifier();
+	UUID getUniqueIdentifier();
 
 	/**
 	 * Return's the cow's family tag
 	 * @return the cow's family tag
 	 */
-	String getFamily();
+	UUID getFamilyTag();
 
 	/**
 	 * How many times the cow has been bred
 	 * with a family member
 	 * @return How many times the cow's been inbred
 	 */
-	int timesInbred();
+	int getTimesInbred();
 
 	/**
 	 * Increments how many times the cow
 	 * has been inbred
 	 */
 	void updateInbred();
+
+	/**
+	 * Sets the unique identifie
+	 * @param identifier the unique identifier
+	 */
+	void setUniqueIdentifier(UUID identifier);
+
+	/**
+	 * Sets the family tag
+	 * @param tag the family tag
+	 */
+	void setFamilyTag(UUID tag);
+
+	/**
+	 * Sets how many times the cow's been inbred
+	 * @param timesInbred how many times it's been inbred
+	 */
+	void setTimesInbred(int timesInbred);
 }

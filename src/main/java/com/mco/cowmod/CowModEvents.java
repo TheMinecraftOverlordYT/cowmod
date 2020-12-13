@@ -1,7 +1,9 @@
 package com.mco.cowmod;
 
+import com.mco.cowmod.capabilities.DnaProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,7 +17,7 @@ public class CowModEvents
 	{
 		if(event.getObject() instanceof CowEntity)
 		{
-			//event.addCapability(
+			event.addCapability(new ResourceLocation(CowMod.MODID, "dna"), new DnaProvider());
 		}
 	}
 

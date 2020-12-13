@@ -1,8 +1,12 @@
 package com.mco.cowmod;
 
+import com.mco.cowmod.capabilities.Dna;
+import com.mco.cowmod.capabilities.DnaStorage;
+import com.mco.cowmod.capabilities.IDna;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -16,6 +20,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -46,6 +51,8 @@ public class CowMod
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+
+        CapabilityManager.INSTANCE.register(Dna.class, new DnaStorage(), Dna::new);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
