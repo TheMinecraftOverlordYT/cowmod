@@ -50,6 +50,7 @@ public class CowMod
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(CowModEvents.class);
     }
 
     private void setup(final FMLCommonSetupEvent event)

@@ -1,5 +1,6 @@
 package com.mco.cowmod.dna;
 
+import com.mojang.datafixers.types.templates.Check;
 import net.minecraft.entity.passive.CowEntity;
 
 import java.security.MessageDigest;
@@ -50,25 +51,24 @@ public class DnaGenerator
 	{
 		String mom = mother.toString().substring(0, mother.toString().length() / 2);
 		String dad = father.toString().substring(0, father.toString().length() / 2);
-
 		String newId = mom + dad;
 
 		return UUID.fromString(newId);
 	}
-/*
-	*//**
+
+	/**
 	 * Check both halves of the cow's family tag to see if the cow is breeding with a parent
 	 * Will only be called on a first generation cow
 	 * @param partner the partner cow's unique id
 	 * @return whether this cow is being inbred
-	 *//*
-	public boolean bredWithParent(UUID partner)
+	*/
+	public boolean bredWithParent(UUID id, UUID partner)
 	{
 		String partnerString = partner.toString().substring(0, partner.toString().length() / 2);
-		String firstHalf = this.getId().toString().substring(0, this.getId().toString().length / 2);
-		String secondHalf = this.getId().toString().substring(this.getId().toString().length / 2, this.getId().toString.length);
+		String firstHalf = id.toString().substring(0, id.toString().length() / 2);
+		String secondHalf = id.toString().substring(id.toString().length() / 2);
 
 		return firstHalf.equals(partnerString) || secondHalf.equals(partnerString);
-	}*/
+	}
 
 }

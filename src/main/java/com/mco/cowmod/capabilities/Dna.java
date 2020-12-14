@@ -8,6 +8,9 @@ public class Dna implements IDna
 	private UUID familyTag;
 	private int timesInbred;
 
+	/**
+	 * Initialize ids to random values
+	 */
 	public Dna()
 	{
 		this.timesInbred = 0;
