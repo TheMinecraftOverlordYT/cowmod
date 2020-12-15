@@ -37,12 +37,6 @@ public class Dna implements IDna
 	}
 
 	@Override
-	public void updateInbred()
-	{
-		timesInbred++;
-	}
-
-	@Override
 	public UUID getUniqueIdentifier()
 	{
 		return uniqueId;

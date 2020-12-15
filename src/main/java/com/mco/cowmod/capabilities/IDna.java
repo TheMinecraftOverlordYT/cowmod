@@ -24,12 +24,6 @@ public interface IDna
 	int getTimesInbred();
 
 	/**
-	 * Increments how many times the cow
-	 * has been inbred
-	 */
-	void updateInbred();
-
-	/**
 	 * Sets the unique identifier
 	 * @param identifier the unique identifier
 	 */
