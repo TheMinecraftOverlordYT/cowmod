@@ -47,13 +47,16 @@ public class DnaGenerator
 	 *
 	 * @return a unique family UUID comprised of data from the mother and father
 	 */
-	public static UUID createFamilyTag(UUID mother, UUID father)
+	public static String createFamilyTag(String mother, String father)
 	{
-		String mom = mother.toString().substring(0, mother.toString().length() / 2);
-		String dad = father.toString().substring(0, father.toString().length() / 2);
+		String mom = mother.substring(0, mother.length() / 2);
+		String dad = father.substring(0, father.length() / 2);
 		String newId = mom + dad;
 
-		return UUID.fromString(newId);
+		System.out.println(mom);
+		System.out.println(dad);
+
+		return newId;
 	}
 
 	/**

@@ -5,7 +5,7 @@ import java.util.UUID;
 public class Dna implements IDna
 {
 	private UUID uniqueId;
-	private UUID familyTag;
+	private String familyTag;
 	private int timesInbred;
 
 	/**
@@ -15,7 +15,7 @@ public class Dna implements IDna
 	{
 		this.timesInbred = 0;
 		this.uniqueId = UUID.randomUUID();
-		this.familyTag = UUID.randomUUID();
+		this.familyTag = UUID.randomUUID().toString();
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class Dna implements IDna
 	}
 
 	@Override
-	public void setFamilyTag(UUID familyTag)
+	public void setFamilyTag(String familyTag)
 	{
 		this.familyTag = familyTag;
 	}
@@ -49,7 +49,7 @@ public class Dna implements IDna
 	}
 
 	@Override
-	public UUID getFamilyTag()
+	public String getFamilyTag()
 	{
 		return familyTag;
 	}

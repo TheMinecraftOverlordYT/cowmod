@@ -14,7 +14,7 @@ public class DnaStorage implements Capability.IStorage<Dna>
 	public INBT writeNBT(Capability<Dna> capability, Dna instance, Direction side) {
 		CompoundNBT tag = new CompoundNBT();
 		tag.putUniqueId("uniqueId", instance.getUniqueIdentifier());
-		tag.putUniqueId("familyTag", instance.getFamilyTag());
+		tag.putString("familyTag", instance.getFamilyTag());
 		tag.putInt("timesInbred", instance.getTimesInbred());
 		return tag;
 	}
@@ -23,7 +23,7 @@ public class DnaStorage implements Capability.IStorage<Dna>
 	public void readNBT(Capability<Dna> capability, Dna instance, Direction side, INBT nbt) {
 		CompoundNBT tag = (CompoundNBT) nbt;
 		instance.setUniqueIdentifier(tag.getUniqueId("uniqueId"));
-		instance.setFamilyTag(tag.getUniqueId("familyTag"));
+		instance.setFamilyTag(tag.getString("familyTag"));
 		instance.setTimesInbred(tag.getInt("timesInbred"));
 	}
 }

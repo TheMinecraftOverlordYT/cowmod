@@ -14,7 +14,7 @@ public interface IDna
 	 * Return's the cow's family tag
 	 * @return the cow's family tag
 	 */
-	UUID getFamilyTag();
+	String getFamilyTag();
 
 	/**
 	 * How many times the cow has been bred
@@ -39,7 +39,7 @@ public interface IDna
 	 * Sets the family tag
 	 * @param tag the family tag
 	 */
-	void setFamilyTag(UUID tag);
+	void setFamilyTag(String tag);
 
 	/**
 	 * Sets how many times the cow's been inbred
