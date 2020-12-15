@@ -30,7 +30,7 @@ public interface IDna
 	void updateInbred();
 
 	/**
-	 * Sets the unique identifie
+	 * Sets the unique identifier
 	 * @param identifier the unique identifier
 	 */
 	void setUniqueIdentifier(UUID identifier);
