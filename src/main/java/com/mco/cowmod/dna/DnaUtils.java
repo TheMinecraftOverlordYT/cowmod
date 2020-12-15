@@ -1,26 +1,19 @@
 package com.mco.cowmod.dna;
 
-import com.mojang.datafixers.types.templates.Check;
-import net.minecraft.entity.passive.CowEntity;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.UUID;
-
 /**
  * Singleton class that will handle dna logic for cows
  *
  * @author TheMCO, warrior
  */
-public class DnaGenerator
+public class DnaUtils
 {
 	/** Maintain a private instance */
-	private static DnaGenerator instance = null;
+	private static DnaUtils instance = null;
 
 	/**
 	 * Creates instance
 	 */
-	public DnaGenerator()
+	public DnaUtils()
 	{
 		getInstance();
 	}
@@ -31,10 +24,10 @@ public class DnaGenerator
 	 *
 	 * @return the singleton instance
 	 */
-	public static DnaGenerator getInstance()
+	public static DnaUtils getInstance()
 	{
 		if(instance == null)
-			instance = new DnaGenerator();
+			instance = new DnaUtils();
 
 		return instance;
 	}
@@ -53,29 +46,15 @@ public class DnaGenerator
 		String dad = father.substring(0, father.length() / 2);
 		String newId = mom + dad;
 
-		System.out.println(mom);
-		System.out.println(dad);
-
 		return newId;
 	}
 
 	/**
-	 * Check both halves of the cow's family tag to see if the cow is breeding with a parent
-	 * Will only be called on a first generation cow
-	 * @param partner the partner cow's unique id
-	 * @return whether this cow is being inbred
-	*/
-	public boolean bredWithParent(UUID id, UUID partner)
-	{
-		String partnerString = partner.toString().substring(0, partner.toString().length() / 2);
-		String firstHalf = id.toString().substring(0, id.toString().length() / 2);
-		String secondHalf = id.toString().substring(id.toString().length() / 2);
-
-		return firstHalf.equals(partnerString) || secondHalf.equals(partnerString);
-	}
-
-
-
+	 * Method to compare 2 strings for similarity
+	 * @param s1 first string
+	 * @param s2 second string
+	 * @return an int representing the strings' similarity
+	 */
 	public static double similarity(String s1, String s2) {
 		String longer = s1, shorter = s2;
 		if (s1.length() < s2.length()) { // longer should always have greater length
@@ -83,14 +62,11 @@ public class DnaGenerator
 		}
 		int longerLength = longer.length();
 		if (longerLength == 0) { return 1.0; /* both strings are zero length */ }
-        /* // If you have StringUtils, you can use it to calculate the edit distance:
-        return (longerLength - StringUtils.getLevenshteinDistance(longer, shorter)) /
-                                                             (double) longerLength; */
 		return (longerLength - editDistance(longer, shorter)) / (double) longerLength;
 
 	}
 
-	public static int editDistance(String s1, String s2) {
+	private static int editDistance(String s1, String s2) {		//Helper method for comparing strings, idk its from StackOverflow
 		s1 = s1.toLowerCase();
 		s2 = s2.toLowerCase();
 
@@ -116,6 +92,4 @@ public class DnaGenerator
 		}
 		return costs[s2.length()];
 	}
-
-
 }
